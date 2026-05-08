@@ -1180,78 +1180,69 @@
     </section>
 
     <!-- ==================== RSVP ==================== -->
-    <section class="py-24 px-4" id="rsvp">
-        <div class="max-w-3xl mx-auto">
-            <p class="section-subtitle fade-in">Подтверждение</p>
-            <h2 class="section-title fade-in">Анкета для гостей</h2>
-            <div class="divider fade-in">
-                <div class="divider-line"></div>
-                <span class="divider-icon">— ✦ —</span>
-                <div class="divider-line"></div>
-            </div>
-            <p class="text-center mt-6 fade-in font-light" style="color: var(--mid-gray); font-weight: 300;">
-                Пожалуйста, заполните форму до 30 мая 2026 года
-            </p>
-            <form class="rsvp-form mt-14 fade-in" id="rsvpForm" onsubmit="submitRSVP(event)">
-                <div class="form-group">
-                    <label class="form-label">Имя и Фамилия *</label>
-                    <input type="text" class="form-input" placeholder="Иван Иванов" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Присутствие *</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="attendance" value="yes" required>
-                            <span>С радостью приду!</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="attendance" value="no">
-                            <span>К сожалению, не смогу</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="attendance" value="maybe">
-                            <span>Пока не знаю</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-option">
-                        <input type="checkbox" id="plusOne">
-                        <span>Буду с парой (+1)</span>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-option">
-                        <input type="checkbox" id="children">
-                        <span>Приду с детьми</span>
-                    </label>
-                </div>
-                <div class="form-group" id="childrenCountGroup" style="display: none;">
-                    <label class="form-label">Количество детей</label>
-                    <select class="form-select">
-                        <option value="1">1 ребёнок</option>
-                        <option value="2">2 ребёнка</option>
-                        <option value="3">3 ребёнка</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Предпочтения по еде</label>
-                    <select class="form-select">
-                        <option value="">Выберите вариант</option>
-                        <option value="meat">Мясо</option>
-                        <option value="fish">Рыба</option>
-                        <option value="vegetarian">Вегетарианское</option>
-                        <option value="vegan">Веганское</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Комментарий</label>
-                    <textarea class="form-textarea" placeholder="Ваши пожелания или вопросы..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary w-full text-center">Подтвердить участие</button>
-            </form>
-        </div>
-    </section>
+<section id="rsvp" class="rsvp-section">
+  <div class="section-header">
+    <h2>Подтверждение</h2>
+    <p>Анкета для гостей</p>
+    <div class="divider">— ✦ —</div>
+    <p class="deadline">Пожалуйста, заполните форму до 1 мая 2026 года</p>
+  </div>
+
+  <!-- Вставьте сюда свой ID из Formspree вместо ВАШ_УНИКАЛЬНЫЙ_ID -->
+  <form id="rsvp-form" action="https://formspree.io/f/ВАШ_УНИКАЛЬНЫЙ_ID" method="POST">
+    <div class="form-group">
+      <label for="guest-name">Имя и Фамилия *</label>
+      <input type="text" id="guest-name" name="full_name" required placeholder="Например: Алексей и Елена">
+    </div>
+
+    <div class="form-group">
+      <label>Присутствие *</label>
+      <div class="options-grid">
+        <label class="option-card">
+          <input type="radio" name="attendance" value="С радостью приду!" required>
+          <span>С радостью приду!</span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="attendance" value="К сожалению, не смогу">
+          <span>К сожалению, не смогу</span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="attendance" value="Пока не знаю">
+          <span>Пока не знаю</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Дети</label>
+      <div class="options-grid">
+        <label class="option-card">
+          <input type="radio" name="children" value="Без детей" checked>
+          <span>Приду без детей</span>
+        </label>
+        <label class="option-card">
+          <input type="radio" name="children" value="С детьми">
+          <span>Буду с детьми</span>
+        </label>
+      </div>
+      <div id="children-count-wrapper" style="display:none; margin-top:10px;">
+        <select name="children_count" class="form-select">
+          <option value="1">1 ребёнок</option>
+          <option value="2">2 ребёнка</option>
+          <option value="3">3 ребёнка</option>
+          <option value="4+">4 и более</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">Комментарий</label>
+      <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, пожелания по рассадке и т.д."></textarea>
+    </div>
+
+    <button type="submit" class="btn-primary" id="submit-btn">Подтвердить участие</button>
+  </form>
+</section>
 
     <!-- ==================== MAP ==================== -->
     <section class="section-alt py-24 px-4" id="map">
@@ -1552,5 +1543,49 @@ L.marker([51.500223, 46.126658], { icon: customIcon })
             }
         });
     </script>
+    document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('rsvp-form');
+  const childrenRadios = document.querySelectorAll('input[name="children"]');
+  const childrenWrapper = document.getElementById('children-count-wrapper');
+  const submitBtn = document.getElementById('submit-btn');
+  
+  // Показать/скрыть выбор количества детей
+  childrenRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      childrenWrapper.style.display = radio.value === 'С детьми' ? 'block' : 'none';
+    });
+  });
+
+  // Отправка формы через Formspree без перезагрузки
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Отправка...';
+
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        form.reset();
+        childrenWrapper.style.display = 'none';
+        submitBtn.textContent = 'Подтвердить участие';
+        
+        // 🔽 Покажите ваше существующее модальное окно "Спасибо!"
+        // Замените селектор на ID или class вашего модального окна в коде:
+        document.querySelector('.modal-success, #success-modal, .modal')?.classList.add('active');
+      } else {
+        alert('Не удалось отправить форму. Попробуйте ещё раз.');
+      }
+    } catch (err) {
+      alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+});
 </body>
 </html>
