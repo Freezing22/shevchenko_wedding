@@ -1188,8 +1188,8 @@
     <p class="deadline">Пожалуйста, заполните форму до 1 мая 2026 года</p>
   </div>
 
-  <!-- ЗАМЕНИТЕ НА ВАШ ID ИЗ FORMSPREE -->
-  <form id="rsvp-form" action="https://formspree.io/f/mayrzdpy" method="POST">
+  <!--  ВАЖНО: id="rsvp-form" и action с вашим ID -->
+  <form id="rsvp-form" action="https://formspree.io/f/mayrzdpy" method="POST" novalidate>
     <div class="form-group">
       <label for="guest-name">Имя и Фамилия *</label>
       <input type="text" id="guest-name" name="full_name" required placeholder="Например: Алексей и Елена">
@@ -1241,7 +1241,7 @@
       <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, пожелания по рассадке и т.д." style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:16px; resize:vertical;"></textarea>
     </div>
 
-    <button type="submit" class="btn-primary" id="submit-btn" style="width:100%; padding:15px; background:#2d2d2d; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; text-transform:uppercase; letter-spacing:2px;">Подтвердить участие</button>
+    <button type="submit" class="btn-primary" id="submit-btn" style="width:100%; padding:15px; background:#2d2d2d; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; text-transform:uppercase; letter-spacing:2px; margin-top:10px;">Подтвердить участие</button>
   </form>
 </section>
 
@@ -1544,22 +1544,29 @@ L.marker([51.500223, 46.126658], { icon: customIcon })
             }
         });
     </script>
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('rsvp-form');
+  if (!form) {
+    console.error(' Форма #rsvp-form не найдена. Проверьте HTML.');
+    return;
+  }
+
   const childrenRadios = document.querySelectorAll('input[name="children"]');
   const childrenWrapper = document.getElementById('children-count-wrapper');
   const submitBtn = document.getElementById('submit-btn');
-  
-  // Показать/скрыть выбор количества детей
+  const successModal = document.querySelector('.modal-success, #success-modal, .modal, [class*="modal"]');
+
+  // Показываем поле "Количество детей"
   childrenRadios.forEach(radio => {
     radio.addEventListener('change', () => {
-      childrenWrapper.style.display = radio.value === 'С детьми' ? 'block' : 'none';
+      if (childrenWrapper) childrenWrapper.style.display = radio.value === 'С детьми' ? 'block' : 'none';
     });
   });
 
-  // Отправка формы через Formspree без перезагрузки
+  // 🔥 Перехватываем отправку
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Блокирует переход на Formspree
+    
     submitBtn.disabled = true;
     submitBtn.textContent = 'Отправка...';
 
@@ -1572,17 +1579,15 @@ L.marker([51.500223, 46.126658], { icon: customIcon })
 
       if (response.ok) {
         form.reset();
-        childrenWrapper.style.display = 'none';
+        if (childrenWrapper) childrenWrapper.style.display = 'none';
         submitBtn.textContent = 'Подтвердить участие';
-        
-        // 🔽 Покажите ваше существующее модальное окно "Спасибо!"
-        // Замените селектор на ID или class вашего модального окна в коде:
-        document.querySelector('.modal-success, #success-modal, .modal')?.classList.add('active');
+        if (successModal) successModal.classList.add('active');
       } else {
-        alert('Не удалось отправить форму. Попробуйте ещё раз.');
+        alert('Ошибка сервера. Попробуйте ещё раз.');
       }
     } catch (err) {
-      alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
+      console.error(err);
+      alert('Ошибка соединения. Проверьте интернет.');
     } finally {
       submitBtn.disabled = false;
     }
