@@ -896,8 +896,8 @@
                         <circle cx="12" cy="10" r="3"/>
                     </svg>
                     <h3 class="text-base mb-2 font-elegant" style="letter-spacing: 0.05em;">Место</h3>
-                    <p class="text-lg font-light" style="color: var(--charcoal); font-family: 'Playfair Display', serif; font-weight: 400;">Усадьба «Архангельское»</p>
-                    <p class="text-xs mt-2" style="color: var(--light-gray); font-weight: 300;">Московская область</p>
+                    <p class="text-lg font-light" style="color: var(--charcoal); font-family: 'Playfair Display', serif; font-weight: 400;">ЗАГС</p>
+                    <p class="text-xs mt-2" style="color: var(--light-gray); font-weight: 300;">Саратовская область, г. Энгельс</p>
                 </div>
             </div>
             <div class="flex justify-center gap-5 mt-14 fade-in flex-wrap">
@@ -1219,10 +1219,10 @@
             </div>
             <div class="text-center mt-8 fade-in">
                 <p class="text-xl font-elegant" style="font-weight: 300; color: var(--charcoal);">
-                    Усадьба «Архангельское»
+                    ЗАГС
                 </p>
                 <p style="color: var(--mid-gray); font-weight: 300; margin-top: 0.5rem; font-size: 0.9rem; letter-spacing: 0.02em;">
-                    Московская область, Красногорский район, пос. Архангельское
+                    Саратовская область, г. Энгельс
                 </p>
             </div>
             <div class="map-container mt-10 fade-in">
@@ -1457,7 +1457,7 @@ END:VCALENDAR`;
 // Отключаем стандартную атрибуцию (где отображается логотип)
 const map = L.map('mapDiv', {
     attributionControl: false
-}).setView([55.8326, 37.2726], 14);
+}).setView([51.500223, 46.126658], 14);
 
 L.tileLayer('https://tile2.maps.2gis.com/tiles?x={x}&y={y}&z={z}', {
     attribution: '© 2GIS',
@@ -1491,11 +1491,11 @@ const customIcon = L.divIcon({
     className: ''
 });
 
-L.marker([55.8326, 37.2726], { icon: customIcon })
+L.marker([51.500223, 46.126658], { icon: customIcon })
     .addTo(map)
     .bindPopup('<div style="text-align:center; font-family: Playfair Display, serif;">' +
-        '<strong style="font-size:1rem; color:#2c2c2c; font-weight:400;">Усадьба «Архангельское»</strong><br>' +
-        '<span style="font-size:0.8rem; color:#6b6b6b; font-weight:300;">Московская область</span></div>');
+        '<strong style="font-size:1rem; color:#2c2c2c; font-weight:400;">ЗАГС</strong><br>' +
+        '<span style="font-size:0.8rem; color:#6b6b6b; font-weight:300;">Саратовская область, г.Энгельс</span></div>');
 
         // ==================== PARALLAX ====================
         window.addEventListener('scroll', () => {
