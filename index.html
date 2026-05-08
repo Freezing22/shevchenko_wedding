@@ -1179,8 +1179,7 @@
         </div>
     </section>
 
-    <!-- ==================== RSVP ==================== -->
-<section id="rsvp" class="rsvp-section">
+    <section id="rsvp" class="rsvp-section">
   <div class="section-header">
     <h2>Подтверждение</h2>
     <p>Анкета для гостей</p>
@@ -1188,8 +1187,8 @@
     <p class="deadline">Пожалуйста, заполните форму до 1 мая 2026 года</p>
   </div>
 
-  <!-- Вставьте сюда свой ID из Formspree вместо ВАШ_УНИКАЛЬНЫЙ_ID -->
-  <form id="rsvp-form" action="https://formspree.io/f/ВАШ_УНИКАЛЬНЫЙ_ID" method="POST">
+  <!-- ЗАМЕНИТЕ НА ВАШ ID ИЗ FORMSPREE -->
+  <form id="rsvp-form" action="https://formspree.io/f/ВАШ_ID" method="POST">
     <div class="form-group">
       <label for="guest-name">Имя и Фамилия *</label>
       <input type="text" id="guest-name" name="full_name" required placeholder="Например: Алексей и Елена">
@@ -1225,7 +1224,8 @@
           <span>Буду с детьми</span>
         </label>
       </div>
-      <div id="children-count-wrapper" style="display:none; margin-top:10px;">
+      <div id="children-count-wrapper" style="display:none; margin-top:15px;">
+        <label style="display:block; margin-bottom:8px; font-size:14px; color:var(--text-light);">Количество детей</label>
         <select name="children_count" class="form-select">
           <option value="1">1 ребёнок</option>
           <option value="2">2 ребёнка</option>
