@@ -1180,71 +1180,69 @@
     </section>
 
     <!-- ==================== RSVP ==================== -->
-    <section class="py-24 px-4" id="rsvp">
-        <div class="max-w-3xl mx-auto">
-            <p class="section-subtitle fade-in">Подтверждение</p>
-            <h2 class="section-title fade-in">Анкета для гостей</h2>
-            <div class="divider fade-in">
-                <div class="divider-line"></div>
-                <span class="divider-icon">— ✦ —</span>
-                <div class="divider-line"></div>
-            </div>
-            <p class="text-center mt-6 fade-in font-light" style="color: var(--mid-gray); font-weight: 300;">
-                Пожалуйста, заполните форму до 30 мая 2026 года
-            </p>
-            <!-- Форма для Google Forms -->
-            <form class="rsvp-form mt-14 fade-in" 
-      id="rsvpForm" 
-      action="https://formspree.io/f/mayrzdpy" 
-      method="POST">
-    
-    <div class="form-group">
-        <label class="form-label">Имя и Фамилия *</label>
-        <input type="text" class="form-input" name="name" placeholder="Иван Иванов" required>
-    </div>
-    
-    <div class="form-group">
-        <label class="form-label">Присутствие *</label>
-        <div class="radio-group">
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="С радостью приду!" required>
-                <span>С радостью приду!</span>
-            </label>
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="К сожалению, не смогу">
-                <span>К сожалению, не смогу</span>
-            </label>
-            <label class="radio-option">
-                <input type="radio" name="attendance" value="Пока не знаю">
-                <span>Пока не знаю</span>
-            </label>
+<section class="py-24 px-4" id="rsvp">
+    <div class="max-w-3xl mx-auto">
+        <p class="section-subtitle fade-in">Подтверждение</p>
+        <h2 class="section-title fade-in">Анкета для гостей</h2>
+        <div class="divider fade-in">
+            <div class="divider-line"></div>
+            <span class="divider-icon">— ✦ —</span>
+            <div class="divider-line"></div>
         </div>
+        <p class="text-center mt-6 fade-in font-light" style="color: var(--mid-gray); font-weight: 300;">
+            Пожалуйста, заполните форму до 30 мая 2026 года
+        </p>
+
+        <!-- Форма без action/method, отправка через fetch -->
+        <form class="rsvp-form mt-14 fade-in" id="rsvpForm">
+            <div class="form-group">
+                <label class="form-label">Имя и Фамилия *</label>
+                <input type="text" class="form-input" name="name" placeholder="Иван Иванов" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Присутствие *</label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="С радостью приду!" required>
+                        <span>С радостью приду!</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="К сожалению, не смогу">
+                        <span>К сожалению, не смогу</span>
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="attendance" value="Пока не знаю">
+                        <span>Пока не знаю</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-option">
+                    <input type="checkbox" id="children" name="with_children" value="Да">
+                    <span>Приду с детьми</span>
+                </label>
+            </div>
+
+            <div class="form-group" id="childrenCountGroup" style="display: none;">
+                <label class="form-label">Количество детей</label>
+                <select class="form-select" name="children_count">
+                    <option value="1">1 ребёнок</option>
+                    <option value="2">2 ребёнка</option>
+                    <option value="3">3 ребёнка</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Комментарий</label>
+                <textarea class="form-textarea" name="comment" placeholder="Ваши пожелания..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-primary w-full">Подтвердить участие</button>
+        </form>
     </div>
-    
-    <div class="form-group">
-        <label class="checkbox-option">
-            <input type="checkbox" id="children" name="with_children" value="Да">
-            <span>Приду с детьми</span>
-        </label>
-    </div>
-    
-    <div class="form-group" id="childrenCountGroup" style="display: none;">
-        <label class="form-label">Количество детей</label>
-        <select class="form-select" name="children_count">
-            <option value="1">1 ребёнок</option>
-            <option value="2">2 ребёнка</option>
-            <option value="3">3 ребёнка</option>
-        </select>
-    </div>
-    
-    <div class="form-group">
-        <label class="form-label">Комментарий</label>
-        <textarea class="form-textarea" name="comment" placeholder="Ваши пожелания..."></textarea>
-    </div>
-    
-    <button type="submit" class="btn-primary w-full">Подтвердить участие</button>
-</form>
-    </section>
+</section>
 
     <!-- ==================== MAP ==================== -->
     <section class="section-alt py-24 px-4" id="map">
@@ -1455,55 +1453,77 @@ END:VCALENDAR`;
             button.disabled = true;
         }
 
-        // ==================== RSVP FORM (Google Forms) ====================
-        const childrenCheckbox = document.getElementById('children');
-        const childrenCountGroup = document.getElementById('childrenCountGroup');
+        // ==================== RSVP FORM (Formspree через fetch) ====================
+const childrenCheckbox = document.getElementById('children');
+const childrenCountGroup = document.getElementById('childrenCountGroup');
 
-        childrenCheckbox.addEventListener('change', function() {
-            childrenCountGroup.style.display = this.checked ? 'block' : 'none';
+childrenCheckbox.addEventListener('change', function() {
+    childrenCountGroup.style.display = this.checked ? 'block' : 'none';
+});
+
+const rsvpForm = document.getElementById('rsvpForm');
+
+rsvpForm.addEventListener('submit', async function(e) {
+    // Полностью отменяем стандартную отправку (переход на другую страницу)
+    e.preventDefault();
+
+    // Валидация
+    const nameInput = this.querySelector('input[name="name"]');
+    const radioChecked = this.querySelector('input[name="attendance"]:checked');
+    if (!nameInput.value.trim()) {
+        alert('Пожалуйста, укажите ваше имя и фамилию.');
+        return;
+    }
+    if (!radioChecked) {
+        alert('Пожалуйста, выберите вариант присутствия.');
+        return;
+    }
+
+    showToast('Отправка...');
+
+    // Собираем данные формы
+    const formData = new FormData(this);
+
+    try {
+        const response = await fetch('https://formspree.io/f/mayrzdpy', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
         });
 
-        // Функция вызывается после загрузки iframe (форма отправлена)
-        function onFormSubmit() {
-            // Показываем модальное окно и сбрасываем форму
+        if (response.ok) {
+            // Успех — показываем ваше модальное окно
             document.getElementById('successModal').classList.add('active');
-            const form = document.getElementById('rsvpForm');
-            form.reset();
+            // Сбрасываем форму
+            this.reset();
+            // Скрываем блок с количеством детей
             childrenCountGroup.style.display = 'none';
-            // Дополнительно можно очистить radio-группу (reset уже сбросил)
+            // Дополнительно очищаем тост (необязательно)
+            showToast('Готово!');
+        } else {
+            const errorData = await response.json();
+            console.error('Formspree error:', errorData);
+            alert('Ошибка при отправке. Пожалуйста, попробуйте ещё раз.');
         }
+    } catch (error) {
+        console.error('Network error:', error);
+        alert('Ошибка сети. Проверьте соединение и попробуйте снова.');
+    }
+});
 
-        // Добавляем валидацию перед отправкой (проверка имени и radio)
-        const rsvpForm = document.getElementById('rsvpForm');
-        rsvpForm.addEventListener('submit', function(e) {
-            const nameInput = this.querySelector('input[type="text"]');
-            const radioChecked = this.querySelector('input[type="radio"]:checked');
-            if (!nameInput.value.trim()) {
-                alert('Пожалуйста, укажите ваше имя и фамилию.');
-                e.preventDefault();
-                return false;
-            }
-            if (!radioChecked) {
-                alert('Пожалуйста, выберите вариант присутствия.');
-                e.preventDefault();
-                return false;
-            }
-            // Если всё ок, форма отправится в iframe
-            showToast('Отправка...');
-            return true;
-        });
+function closeModal(id) {
+    document.getElementById(id).classList.remove('active');
+}
 
-        function closeModal(id) {
-            document.getElementById(id).classList.remove('active');
+document.querySelectorAll('.modal-overlay').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+        if (e.target === this) {
+            this.classList.remove('active');
         }
-
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.addEventListener('click', function(e) {
-                if (e.target === this) {
-                    this.classList.remove('active');
-                }
-            });
-        });
+    });
+});
 
         // ==================== TOAST ====================
         function showToast(message) {
