@@ -796,6 +796,52 @@
         .leaflet-container {
             border-radius: 0;
         }
+            /* ====== НОВЫЙ ЗОЛОТОЙ ЗАГОЛОВОК ====== */
+.gold-glow {
+    font-weight: 400 !important;
+    animation: softPulse 3s ease-in-out infinite;
+}
+
+@keyframes softPulse {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.6)) drop-shadow(0 0 18px rgba(212, 175, 55, 0.3));
+    }
+    50% {
+        filter: drop-shadow(0 0 16px rgba(212, 175, 55, 0.9)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.5));
+    }
+}
+
+.name-left,
+.name-right {
+    background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: goldShine 4s ease-in-out infinite;
+    display: inline-block; /* чтобы градиент работал на каждой части */
+}
+
+@keyframes goldShine {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Амперсанд оставляем серебристо‑белым, но с лёгким свечением */
+.hero-ampersand {
+    color: #f0e6d2;
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.7),
+                 0 0 24px rgba(212, 175, 55, 0.5);
+    font-weight: 300;
+    margin: 0.1em 0;
+    animation: softPulse 3s ease-in-out infinite;
+}
+
+/* Чтобы амперсанд не перекрывал градиентом фон — убираем возможные старые конфликты */
+.hero-names.gold-glow {
+    color: transparent; /* исходный цвет отключён, фоном управляют span */
+}
     </style>
 </head>
 <body>
@@ -809,14 +855,14 @@
         <div class="hero-overlay"></div>
         <div class="hero-content">
             <p class="text-xs tracking-[0.5em] uppercase mb-6" style="color: var(--silver); font-weight: 300;">Приглашение на свадьбу</p>
-            <h1 class="hero-names">
-                Диана
+            <h1 class="hero-names gold-glow">
+                <span class="name-left">Диана</span>
                 <span class="hero-ampersand">&</span>
-                Антон
+                <span class="name-right">Антон</span>
             </h1>
             <div class="hero-line"></div>
-            <p class="hero-date">26 · 06 · 2026</p>
-            <p class="hero-quote">«Наша история начинается...»</p>
+            <p class="hero-date" style="text-shadow: 0 0 10px rgba(212,175,55,0.4); letter-spacing: 0.6em;">26 · 06 · 2026</p>
+            <p class="hero-quote" style="text-shadow: 0 0 8px rgba(255,255,255,0.3); font-style: italic;">«Наша история начинается...»</p>
         </div>
         <div class="scroll-indicator">
             <svg width="20" height="32" viewBox="0 0 20 32" fill="none" stroke="white" stroke-width="1" opacity="0.5">
