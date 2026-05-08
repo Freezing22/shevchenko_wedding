@@ -1193,51 +1193,57 @@
                 Пожалуйста, заполните форму до 30 мая 2026 года
             </p>
             <!-- Форма для Google Forms -->
-            <form class="rsvp-form mt-14 fade-in" id="rsvpForm" method="POST" action="<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSegdrLMzalCSorRXSMku1E1ouLthdz7mWg-iIvKyXt3l8iwIw/viewform?embedded=true" width="640" height="1200" frameborder="0" marginheight="0" marginwidth="0">Загрузка…</iframe>" target="hidden_iframe">
-                <div class="form-group">
-                    <label class="form-label">Имя и Фамилия *</label>
-                    <input type="text" class="form-input" name="entry.1235379489" placeholder="Иван Иванов" required>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Присутствие *</label>
-                    <div class="radio-group">
-                        <label class="radio-option">
-                            <input type="radio" name="entry.886160094" value="С радостью приду!" required>
-                            <span>С радостью приду!</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="entry.886160094" value="К сожалению, не смогу">
-                            <span>К сожалению, не смогу</span>
-                        </label>
-                        <label class="radio-option">
-                            <input type="radio" name="entry.886160094" value="Пока не знаю">
-                            <span>Пока не знаю</span>
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="checkbox-option">
-                        <input type="checkbox" id="children" name="entry.995109411" value="Да, с детьми">
-                        <span>Приду с детьми</span>
-                    </label>
-                </div>
-                <div class="form-group" id="childrenCountGroup" style="display: none;">
-                    <label class="form-label">Количество детей</label>
-                    <select class="form-select" name="entry.1086140962">
-                        <option value="1">1 ребёнок</option>
-                        <option value="2">2 ребёнка</option>
-                        <option value="3">3 ребёнка</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label class="form-label">Комментарий</label>
-                    <textarea class="form-textarea" name="entry.1297045924" placeholder="Ваши пожелания или вопросы..."></textarea>
-                </div>
-                <button type="submit" class="btn-primary w-full text-center">Подтвердить участие</button>
-            </form>
-            <!-- Скрытый iframe для отправки формы без перезагрузки -->
-            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="onFormSubmit()"></iframe>
+            <form class="rsvp-form mt-14 fade-in" 
+      id="rsvpForm" 
+      action="https://formspree.io/f/mayrzdpy" 
+      method="POST">
+    
+    <div class="form-group">
+        <label class="form-label">Имя и Фамилия *</label>
+        <input type="text" class="form-input" name="name" placeholder="Иван Иванов" required>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-label">Присутствие *</label>
+        <div class="radio-group">
+            <label class="radio-option">
+                <input type="radio" name="attendance" value="С радостью приду!" required>
+                <span>С радостью приду!</span>
+            </label>
+            <label class="radio-option">
+                <input type="radio" name="attendance" value="К сожалению, не смогу">
+                <span>К сожалению, не смогу</span>
+            </label>
+            <label class="radio-option">
+                <input type="radio" name="attendance" value="Пока не знаю">
+                <span>Пока не знаю</span>
+            </label>
         </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="checkbox-option">
+            <input type="checkbox" id="children" name="with_children" value="Да">
+            <span>Приду с детьми</span>
+        </label>
+    </div>
+    
+    <div class="form-group" id="childrenCountGroup" style="display: none;">
+        <label class="form-label">Количество детей</label>
+        <select class="form-select" name="children_count">
+            <option value="1">1 ребёнок</option>
+            <option value="2">2 ребёнка</option>
+            <option value="3">3 ребёнка</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label class="form-label">Комментарий</label>
+        <textarea class="form-textarea" name="comment" placeholder="Ваши пожелания..."></textarea>
+    </div>
+    
+    <button type="submit" class="btn-primary w-full">Подтвердить участие</button>
+</form>
     </section>
 
     <!-- ==================== MAP ==================== -->
