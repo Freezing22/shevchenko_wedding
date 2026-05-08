@@ -1179,12 +1179,13 @@
         </div>
     </section>
 
-    <section id="rsvp" class="rsvp-section">
+    <!-- ==================== RSVP ==================== -->   
+<section id="rsvp" class="rsvp-section">
   <div class="section-header">
     <h2>Подтверждение</h2>
     <p>Анкета для гостей</p>
     <div class="divider">— ✦ —</div>
-    <p class="deadline">Пожалуйста, заполните форму до 30 мая 2026 года</p>
+    <p class="deadline">Пожалуйста, заполните форму до 1 мая 2026 года</p>
   </div>
 
   <!-- ЗАМЕНИТЕ НА ВАШ ID ИЗ FORMSPREE -->
@@ -1225,8 +1226,8 @@
         </label>
       </div>
       <div id="children-count-wrapper" style="display:none; margin-top:15px;">
-        <label style="display:block; margin-bottom:8px; font-size:14px; color:var(--text-light);">Количество детей</label>
-        <select name="children_count" class="form-select">
+        <label style="display:block; margin-bottom:8px; font-size:14px; color:#888;">Количество детей</label>
+        <select name="children_count" class="form-select" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:16px;">
           <option value="1">1 ребёнок</option>
           <option value="2">2 ребёнка</option>
           <option value="3">3 ребёнка</option>
@@ -1237,10 +1238,10 @@
 
     <div class="form-group">
       <label for="comment">Комментарий</label>
-      <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, пожелания по рассадке и т.д."></textarea>
+      <textarea id="comment" name="comment" rows="3" placeholder="Аллергии, пожелания по рассадке и т.д." style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:16px; resize:vertical;"></textarea>
     </div>
 
-    <button type="submit" class="btn-primary" id="submit-btn">Подтвердить участие</button>
+    <button type="submit" class="btn-primary" id="submit-btn" style="width:100%; padding:15px; background:#2d2d2d; color:white; border:none; border-radius:8px; font-size:16px; cursor:pointer; text-transform:uppercase; letter-spacing:2px;">Подтвердить участие</button>
   </form>
 </section>
 
